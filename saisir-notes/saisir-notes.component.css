@@ -1,0 +1,109 @@
+.pourcentages-card {
+  background: #f9f5ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e0d5f5;
+}
+
+.pourcentages-card h4 {
+  color: #4a3f6b;
+  margin: 0 0 15px 0;
+}
+
+.pourcentages-grid {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pourcentage-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pourcentage-item label {
+  color: #4a3f6b;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.input-percent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-percent input {
+  width: 60px;
+  padding: 6px 10px;
+  border: 1px solid #c0b0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+}
+
+.pourcentage-total {
+  font-weight: bold;
+  color: #4a3f6b;
+  font-size: 14px;
+  padding: 8px 15px;
+  background: #e8dff5;
+  border-radius: 8px;
+}
+
+.pourcentage-total.invalid {
+  background: #ffe0e0;
+  color: #c44a4a;
+}
+
+.warning {
+  font-size: 12px;
+  margin-left: 5px;
+}
+.page { display: flex; }
+
+.content {
+  flex: 1;
+  padding: 25px;
+  margin-left: 250px;
+  box-sizing: border-box;
+}
+
+h2 { color: #1a5276; margin: 0 0 25px 0; }
+
+.table-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+table { width: 100%; border-collapse: collapse; }
+
+th {
+  background-color: #2e86c1;
+  color: white;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #f0f8ff;
+  font-size: 14px;
+}
+
+tr:hover td { background-color: #d6eaf8; }
+
+.no-data {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  padding: 30px;
+}

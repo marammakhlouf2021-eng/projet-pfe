@@ -1,0 +1,158 @@
+.page { display: flex; }
+
+.content {
+  flex: 1;
+  padding: 25px;
+  margin-left: 250px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+h2 { color: #4a3f6b; margin: 0; }
+
+.filtres-card {
+  background: #f9f5ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  border: 1px solid #e0d5f5;
+}
+
+.filtre-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.filtre-group label {
+  color: #4a3f6b;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+select, .input-date {
+  padding: 9px 12px;
+  border: 1px solid #c0b0e0;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  font-size: 14px;
+}
+
+.table-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #7c6fa0;
+  color: white;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #faf7ff;
+  font-size: 14px;
+}
+
+tr:hover td { background-color: #f0eaff; }
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggle input:checked + .slider { background-color: #7c6fa0; }
+.toggle input:checked + .slider:before { transform: translateX(22px); }
+
+.btn-enregistrer {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+.ligne-absent td {
+  background-color: #ffe8e8 !important;
+}
+
+.select-type {
+  padding: 5px 8px;
+  border: 1px solid #c0b0e0;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.input-retard {
+  width: 70px;
+  padding: 5px 8px;
+  border: 1px solid #c0b0e0;
+  border-radius: 6px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.actions-td {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-supprimer {
+  background: #e05c5c;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-enregistrer:hover { background-color: #4a9e4a; }

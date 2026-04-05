@@ -1,0 +1,115 @@
+<div class="page">
+  <app-sidebar-professeur></app-sidebar-professeur>
+
+  <div class="content">
+    <div class="header">
+      <h2>Saisir les Notes </h2>
+    </div>
+
+    <!-- Pourcentages -->
+    <div class="pourcentages-card">
+      <h4>Pourcentages par type :</h4>
+      <div class="pourcentages-grid">
+        <div class="pourcentage-item">
+          <label>DS1</label>
+          <div class="input-percent">
+            <input type="number" [(ngModel)]="pourcentages.DS1" min="0" max="100">
+            <span>%</span>
+          </div>
+        </div>
+        <div class="pourcentage-item">
+          <label>DS2</label>
+          <div class="input-percent">
+            <input type="number" [(ngModel)]="pourcentages.DS2" min="0" max="100">
+            <span>%</span>
+          </div>
+        </div>
+        <div class="pourcentage-item">
+          <label>Examen</label>
+          <div class="input-percent">
+            <input type="number" [(ngModel)]="pourcentages.Examen" min="0" max="100">
+            <span>%</span>
+          </div>
+        </div>
+        <div class="pourcentage-item">
+          <label>TP</label>
+          <div class="input-percent">
+            <input type="number" [(ngModel)]="pourcentages.TP" min="0" max="100">
+            <span>%</span>
+          </div>
+        </div>
+        <div class="pourcentage-total" [class.invalid]="getTotalPourcentage() !== 100">
+          Total : {{ getTotalPourcentage() }}%
+          <span *ngIf="getTotalPourcentage() !== 100" class="warning">⚠️ Doit être 100%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtres -->
+    <div class="filtres-card">
+      <div class="filtre-group">
+        <label>Matière</label>
+        <select [(ngModel)]="matiereSelectionnee" (change)="onMatiereChange()">
+          <option value="">Choisir matière </option>
+          <option *ngFor="let mat of matieres" [value]="mat._id">
+            {{ mat.nom }} — {{ mat.classe?.nom }}
+          </option>
+        </select>
+      </div>
+      <div class="filtre-group">
+        <label>Type d'évaluation</label>
+        <select [(ngModel)]="typeNote" (change)="onTypeChange()">
+          <option value="">Type </option>
+          <option value="DS1">DS1 ({{ pourcentages.DS1 }}%)</option>
+          <option value="DS2">DS2 ({{ pourcentages.DS2 }}%)</option>
+          <option value="Examen">Examen ({{ pourcentages.Examen }}%)</option>
+          <option value="TP">TP ({{ pourcentages.TP }}%)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table notes -->
+    <div class="table-card" *ngIf="etudiants.length > 0">
+      <div class="table-header">
+        <span>{{ etudiants.length }} étudiant(s)</span>
+        <button class="btn-enregistrer-tout" (click)="enregistrerTout()">
+          ✓ Enregistrer tout
+        </button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Note /20</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let etu of etudiants">
+            <td>{{ etu.nom }}</td>
+            <td>{{ etu.prenom }}</td>
+            <td>
+              <input type="number" min="0" max="20"
+                [(ngModel)]="notes[etu._id]"
+                (change)="notes[etu._id] = notes[etu._id] > 20 ? 20 : notes[etu._id] < 0 ? 0 : notes[etu._id]"
+                class="input-note">
+            </td>
+            <td>
+              <button class="btn-enregistrer" (click)="enregistrerNote(etu._id)">
+                ✓ Enregistrer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="etudiants.length === 0 && matiereSelectionnee" class="no-data">
+      Aucun étudiant dans cette classe
+    </div>
+    <div *ngIf="!matiereSelectionnee" class="no-data">
+      Veuillez choisir une matière pour afficher les étudiants
+    </div>
+  </div>
+</div>
