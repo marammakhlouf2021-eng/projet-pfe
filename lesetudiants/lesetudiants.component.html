@@ -1,0 +1,80 @@
+
+
+<div class="page">
+  <app-side-adminis></app-side-adminis>
+
+  <div class="content">
+    <div class="header">
+      <h2>Gestion des Étudiants</h2>
+      <button class="btn-ajouter" (click)="showForm = !showForm">+ Nouvel Étudiant</button>
+    </div>
+
+    <!-- Formulaire ajout -->
+    <div *ngIf="showForm" class="form-card">
+      <h3>Nouvel Étudiant</h3>
+      <div class="form-grid">
+        <input [(ngModel)]="nouvelEtudiant.nom" placeholder="Nom ">
+        <input [(ngModel)]="nouvelEtudiant.prenom" placeholder="Prénom">
+        <input [(ngModel)]="nouvelEtudiant.email" placeholder="Email " type="email">
+        <input [(ngModel)]="nouvelEtudiant.telephone" placeholder="Téléphone">
+        <input [(ngModel)]="nouvelEtudiant.password" placeholder="Mot de passe" type="password">
+        <select [(ngModel)]="nouvelEtudiant.classe">
+          <option value=""> Choisir une classe </option>
+          <option *ngFor="let cls of classes" [value]="cls._id">{{ cls.nom }} - {{ cls.niveau }}</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button class="btn-enregistrer" (click)="ajouterEtudiant()">Enregistrer</button>
+        <button class="btn-annuler" (click)="showForm = false">Annuler</button>
+      </div>
+    </div>
+
+    <!-- Table étudiants -->
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>Classe</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let etu of etudiants">
+          <tr>
+            <td>{{ etu.nom }}</td>
+            <td>{{ etu.prenom }}</td>
+            <td>{{ etu.email }}</td>
+            <td>{{ etu.telephone }}</td>
+            <td>{{ etu.classe?.nom }}</td>
+            <td class="actions">
+              <button class="btn-modifier" (click)="modifier(etu)"> Modifier</button>
+              <button class="btn-supprimer" (click)="supprimer(etu._id)">Supprimer </button>
+            </td>
+          </tr>
+
+          <!-- Ligne modification -->
+          <tr *ngIf="etudiantModifier && etudiantModifier._id === etu._id" class="ligne-edit">
+            <td><input [(ngModel)]="etudiantModifier.nom"></td>
+            <td><input [(ngModel)]="etudiantModifier.prenom"></td>
+            <td><input [(ngModel)]="etudiantModifier.email"></td>
+            <td><input [(ngModel)]="etudiantModifier.telephone"></td>
+            <td>
+              <select [(ngModel)]="etudiantModifier.classe">
+                <option *ngFor="let cls of classes" [value]="cls._id">{{ cls.nom }}</option>
+              </select>
+            </td>
+            <td class="actions">
+              <button class="btn-enregistrer" (click)="enregistrer()">✓</button>
+              <button class="btn-annuler" (click)="etudiantModifier = null">✗</button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <p *ngIf="etudiants.length === 0" class="no-data">Aucun étudiant enregistré</p>
+  </div>
+</div>

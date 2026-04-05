@@ -1,0 +1,111 @@
+.page { display: flex; }
+
+.content {
+  flex: 1;
+  padding: 25px;
+  margin-left: 250px;
+  box-sizing: border-box;
+
+}
+/* Layout général */
+.page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  
+}
+
+
+/* Header */
+.header {
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 26px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Carte du tableau */
+.table-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+/* Tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header tableau */
+thead {
+  background-color: #6c0396;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Lignes */
+tbody td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Alternance lignes */
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover */
+tbody tr:hover {
+  background-color: #eef2ff;
+  transition: 0.3s;
+}
+
+/* Moyenne (mettre en valeur) */
+tbody td strong {
+  color: #16a34a;
+  font-size: 15px;
+}
+
+/* Message aucune donnée */
+.no-data {
+  margin-top: 20px;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 12px;
+  color: #64748b;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+    padding: 15px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 8px;
+  }
+}

@@ -1,0 +1,59 @@
+<app-barre-navigation></app-barre-navigation>
+
+<div class="content">
+  <div class="header">
+    <h2>Gestion des Étudiants</h2>
+    <button class="btn-ajouter" (click)="showForm = !showForm">+ Ajouter</button>
+  </div>
+
+  <div *ngIf="showForm" class="form-card">
+    <div class="form-row">
+      <input [(ngModel)]="nouvelEtu.nom" placeholder="Nom *">
+      <input [(ngModel)]="nouvelEtu.prenom" placeholder="Prénom">
+      <input [(ngModel)]="nouvelEtu.email" placeholder="Email *" type="email">
+      <input [(ngModel)]="nouvelEtu.telephone" placeholder="Téléphone">
+      <input [(ngModel)]="nouvelEtu.password" placeholder="Mot de passe" type="password">
+      <button class="btn-enregistrer" (click)="ajouter()">Enregistrer</button>
+      <button class="btn-annuler" (click)="showForm = false">Annuler</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Classe</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let etu of etudiants">
+        <tr>
+          <td>{{ etu.nom }}</td>
+          <td>{{ etu.prenom }}</td>
+          <td>{{ etu.email }}</td>
+          <td>{{ etu.telephone }}</td>
+          <td>{{ etu.classe?.nom }}</td>
+          <td class="actions">
+            <button class="btn-modifier" (click)="modifier(etu)">Modifier</button>
+            <button class="btn-supprimer" (click)="supprimer(etu._id)">Supprimer</button>
+          </td>
+        </tr>
+        <tr *ngIf="etudiantModifier && etudiantModifier._id === etu._id">
+          <td><input [(ngModel)]="etudiantModifier.nom" placeholder="Nom"></td>
+          <td><input [(ngModel)]="etudiantModifier.prenom" placeholder="Prénom"></td>
+          <td><input [(ngModel)]="etudiantModifier.email" placeholder="Email"></td>
+          <td><input [(ngModel)]="etudiantModifier.telephone" placeholder="Téléphone"></td>
+          <td>{{ etu.classe?.nom }}</td>
+          <td class="actions">
+            <button class="btn-modifier" (click)="enregistrerModification()">Enregistrer</button>
+            <button class="btn-supprimer" (click)="annuler()">Annuler</button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

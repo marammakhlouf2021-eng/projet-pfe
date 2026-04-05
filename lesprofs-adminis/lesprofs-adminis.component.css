@@ -1,0 +1,271 @@
+.page {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+h2 { color: #4a3f6b; margin: 0; }
+
+.form-card {
+  background: #f9f5ff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px dashed #7c6fa0;
+}
+
+.form-card h3 { color: #4a3f6b; margin: 0 0 15px 0; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.form-actions { display: flex; gap: 10px; }
+
+input, select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #c0b0e0;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: #7c6fa0;
+  color: white;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+  background-color: #faf7ff;
+}
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.badge {
+  background: #e8dff5;
+  color: #4a3f6b;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.badge-empty {
+  background: #ffe0e0;
+  color: #c44a4a;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.ligne-edit td { background-color: #f0eaff !important; }
+
+.ligne-affectation td { background-color: #f9f5ff !important; }
+
+.affectation-panel { padding: 15px; }
+.affectation-panel h4 { color: #4a3f6b; margin: 0 0 15px 0; }
+
+.matieres-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.matiere-item {
+  background: white;
+  border: 2px solid #c0b0e0;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: 0.2s;
+}
+
+.matiere-item:hover { border-color: #7c6fa0; }
+
+.matiere-item.selected {
+  background: #e8dff5;
+  border-color: #7c6fa0;
+}
+
+.matiere-item .check {
+  font-weight: bold;
+  color: #7c6fa0;
+}
+
+.matiere-item small { color: #888; font-size: 11px; }
+
+.btn-ajouter {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-modifier {
+  background-color: #7c6fa0;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-affecter {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-supprimer {
+  background-color: #e05c5c;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-enregistrer {
+  background-color: #4a9e4a;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-annuler {
+  background-color: #aaa;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.no-data {
+  color: #aaa;
+  font-style: italic;
+  text-align: center;
+  padding: 15px;
+}
+.matieres-section {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f0eaff;
+  border-radius: 10px;
+}
+
+.matieres-section h4 {
+  color: #4a3f6b;
+  margin: 0 0 10px 0;
+}
+
+.matieres-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.matiere-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4a3f6b;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.matiere-checkbox input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #7c6fa0;
+}
+.niveaux-badge {
+  background: #e8dff5;
+  color: #4a3f6b;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin-left: 5px;
+}
+.matieres-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.matiere-groupe {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #e0d5f5;
+}
+
+.matiere-titre {
+  color: #4a3f6b;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.niveaux-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.niveau-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0eaff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #4a3f6b;
+  cursor: pointer;
+}
+
+.niveau-checkbox input {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: #7c6fa0;
+}

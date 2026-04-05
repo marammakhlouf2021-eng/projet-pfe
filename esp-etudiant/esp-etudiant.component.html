@@ -1,0 +1,34 @@
+<div class="page">
+  <app-sidebar-etudiant></app-sidebar-etudiant>
+  <div class="content">
+    <div class="header">
+      <h2>Bonjour, {{ etudiant?.nom }} {{ etudiant?.prenom }} </h2>
+      <span class="badge-etu">{{ etudiant?.classe?.nom }}</span>
+    </div>
+
+    <h3 class="section-title">Mon Emploi du Temps</h3>
+    <div class="grille-container">
+      <table class="grille">
+        <thead>
+          <tr>
+            <th class="heure-col">Heure</th>
+            <th *ngFor="let jour of jours">{{ jour }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let heure of heures">
+            <td class="heure-cell">{{ heure }}</td>
+            <td *ngFor="let jour of jours" class="cellule" [class.occupee]="getCellule(jour, heure)">
+              <div *ngIf="getCellule(jour, heure) as seance" class="cours-card">
+                <span class="cours-matiere">{{ seance.matiere?.nom }}</span>
+                <span class="cours-prof">{{ seance.professeur?.nom }} {{ seance.professeur?.prenom }}</span>
+                <span class="cours-salle" *ngIf="seance.salle">{{ seance.salle }}</span>
+                <span class="cours-heure">{{ seance.heureDebut }} - {{ seance.heureFin }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

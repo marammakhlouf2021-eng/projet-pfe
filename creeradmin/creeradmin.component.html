@@ -1,0 +1,15 @@
+<div class="form">
+  <div class="container">
+    <h2>creer un compte</h2>
+<input type="text" [(ngModel)]="admin.nom" name="nom" placeholder="nom">
+
+<input type="text" [(ngModel)]="admin.prenom" name="prenom" placeholder="prenom">
+
+<input type="email" [(ngModel)]="admin.email" name="email" placeholder="email">
+
+<input type="text" [(ngModel)]="admin.telephone" name="telephone" placeholder="telephone">
+
+<button (click)="addAdmin()">Créer</button>
+  
+</div>
+

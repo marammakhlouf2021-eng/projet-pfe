@@ -1,0 +1,112 @@
+<div class="page">
+  <app-side-adminis></app-side-adminis>
+
+  <div class="content">
+    <div class="header">
+      <h2>Gestion des Classes et Matières</h2>
+      <button class="btn-ajouter" (click)="showFormClasse = !showFormClasse">+ Nouvelle Classe</button>
+    </div>
+
+    <div *ngIf="showFormClasse" class="form-card">
+      <h3>Nouvelle Classe</h3>
+      <div class="form-row">
+        <input [(ngModel)]="nouvelleClasse.nom" placeholder="Nom (ex: 3ème info)">
+        <input [(ngModel)]="nouvelleClasse.niveau" placeholder="Niveau (ex: 3ème année)">
+        <button class="btn-enregistrer" (click)="ajouterClasse()">Enregistrer</button>
+        <button class="btn-annuler" (click)="showFormClasse = false">Annuler</button>
+      </div>
+    </div>
+
+    <div *ngFor="let cls of classes" class="classe-card">
+      <div class="classe-header">
+
+        <div *ngIf="!classeModifier || classeModifier._id !== cls._id" class="classe-info">
+          <h3>{{ cls.nom }}</h3>
+          <span class="badge">{{ cls.niveau }}</span>
+        </div>
+
+        <div *ngIf="classeModifier && classeModifier._id === cls._id" class="edit-inline">
+          <input [(ngModel)]="classeModifier.nom" placeholder="Nom">
+          <input [(ngModel)]="classeModifier.niveau" placeholder="Niveau">
+          <button class="btn-enregistrer" (click)="enregistrerClasse()">✓</button>
+          <button class="btn-annuler" (click)="classeModifier = null">✗</button>
+        </div>
+
+        <div class="classe-actions">
+          <button class="btn-modifier" (click)="modifierClasse(cls)">Modifier</button>
+          <button class="btn-supprimer" (click)="supprimerClasse(cls._id)">Supprimer</button>
+          <button class="btn-ajouter" (click)="showFormMatiere[cls._id] = !showFormMatiere[cls._id]">+ Matière</button>
+        </div>
+      </div>
+
+   <div *ngIf="showFormMatiere[cls._id]" class="form-matiere">
+  <input [(ngModel)]="nouvelleMatiere.nom" placeholder="Nom matière">
+  <input [(ngModel)]="nouvelleMatiere.coefficient" type="number" placeholder="Coefficient">
+  
+  <!-- Profs autorisés pour cette matière -->
+  <div class="profs-autorises">
+    <label>Profs autorisés :</label>
+    <div class="profs-grid">
+      <label *ngFor="let prof of professeurs" class="prof-checkbox">
+        <input type="checkbox"
+          [checked]="nouvelleMatiere.profsAutorises?.includes(prof._id)"
+          (change)="toggleProfAutorise(prof._id)">
+        {{ prof.nom }} {{ prof.prenom }}
+      </label>
+    </div>
+  </div>
+
+  <!-- Prof affecté (parmi les autorisés) -->
+  <select [(ngModel)]="nouvelleMatiere.professeur">
+    <option value="">Choisir professeur </option>
+    <option *ngFor="let prof of getProfsPourNouvelleMatiere()" [value]="prof._id">
+      {{ prof.nom }} {{ prof.prenom }}
+    </option>
+  </select>
+
+  <button class="btn-enregistrer" (click)="ajouterMatiere(cls._id)">Enregistrer</button>
+  <button class="btn-annuler" (click)="showFormMatiere[cls._id] = false">Annuler</button>
+</div>
+      <table *ngIf="(matieresByClasse[cls._id] || []).length > 0">
+        <thead>
+          <tr>
+            <th>Matière</th>
+            <th>Coefficient</th>
+            <th>Professeur</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let mat of matieresByClasse[cls._id]">
+            <tr>
+              <td>{{ mat.nom }}</td>
+              <td>{{ mat.coefficient }}</td>
+              <td>{{ mat.professeur?.nom }} {{ mat.professeur?.prenom }}</td>
+              <td class="actions">
+                <button class="btn-modifier" (click)="modifierMatiere(mat)">Modifier</button>
+                <button class="btn-supprimer" (click)="supprimerMatiere(mat._id, cls._id)">Supprimer</button>
+              </td>
+            </tr>
+            <tr *ngIf="matiereModifier && matiereModifier._id === mat._id.toString()">
+              <td><input [(ngModel)]="matiereModifier.nom"></td>
+              <td><input [(ngModel)]="matiereModifier.coefficient" type="number"></td>
+              <td>
+                <select [(ngModel)]="matiereModifier.professeur">
+                  <option *ngFor="let prof of getProfsPourMatiere(matiereModifier.nom)" [value]="prof._id">
+                    {{ prof.nom }} {{ prof.prenom }}
+                  </option>
+                </select>
+              </td>
+              <td class="actions">
+                <button class="btn-enregistrer" (click)="enregistrerMatiere()">✓ Enregistrer</button>
+                <button class="btn-annuler" (click)="matiereModifier = null">✗ Annuler</button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <p *ngIf="!(matieresByClasse[cls._id] || []).length" class="no-data">Aucune matière</p>
+    </div>
+
+  </div>
+</div>

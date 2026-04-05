@@ -1,0 +1,72 @@
+<app-barre-navigation></app-barre-navigation>
+
+<div class="content">
+  <div class="header">
+    <h2>Gestion des Professeurs</h2>
+    <button class="btn-ajouter" (click)="showForm = !showForm">+ Ajouter</button>
+  </div>
+
+  <div *ngIf="showForm" class="form-card">
+    <h3>Nouveau Professeur</h3>
+    <div class="form-row">
+      <input [(ngModel)]="nouveauProf.nom" placeholder="Nom *">
+      <input [(ngModel)]="nouveauProf.prenom" placeholder="Prénom">
+      <input [(ngModel)]="nouveauProf.email" placeholder="Email *" type="email">
+      <input [(ngModel)]="nouveauProf.telephone" placeholder="Téléphone">
+      <input [(ngModel)]="nouveauProf.password" placeholder="Mot de passe" type="password">
+    </div>
+
+    <div class="matieres-section">
+      <h4>Choisir les matières autorisées :</h4>
+      <div class="matieres-grid">
+        <label *ngFor="let mat of toutesLesMatieres" class="matiere-checkbox">
+          <input type="checkbox"
+            [checked]="matieresSelectionnees.includes(mat._id)"
+            (change)="toggleMatiere(mat._id)">
+          {{ mat.nom }} — {{ mat.classe?.nom }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-enregistrer" (click)="ajouter()">Enregistrer</button>
+      <button class="btn-annuler" (click)="showForm = false">Annuler</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let prof of professeurs">
+        <tr>
+          <td>{{ prof.nom }}</td>
+          <td>{{ prof.prenom }}</td>
+          <td>{{ prof.email }}</td>
+          <td>{{ prof.telephone }}</td>
+          <td class="actions">
+            <button class="btn-modifier" (click)="modifier(prof)">Modifier</button>
+            <button class="btn-supprimer" (click)="supprimer(prof._id)">Supprimer</button>
+          </td>
+        </tr>
+        <tr *ngIf="professeurModifier && professeurModifier._id === prof._id">
+          <td><input [(ngModel)]="professeurModifier.nom" placeholder="Nom"></td>
+          <td><input [(ngModel)]="professeurModifier.prenom" placeholder="Prénom"></td>
+          <td><input [(ngModel)]="professeurModifier.email" placeholder="Email"></td>
+          <td><input [(ngModel)]="professeurModifier.telephone" placeholder="Téléphone"></td>
+          <td class="actions">
+            <button class="btn-modifier" (click)="enregistrerModification()">Enregistrer</button>
+            <button class="btn-supprimer" (click)="annuler()">Annuler</button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

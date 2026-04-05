@@ -1,0 +1,35 @@
+<div class="page">
+  <app-sidebar-etudiant></app-sidebar-etudiant>
+  <div class="content">
+    <div class="header">
+      <h2>Mes Notes </h2>
+    </div>
+
+    <div class="table-card" *ngIf="getMatieres().length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Matière</th>
+            <th>DS1</th>
+            <th>DS2</th>
+            <th>Examen</th>
+            <th>Moyenne</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mat of getMatieres()">
+            <td>{{ mat?.nom }}</td>
+            <td>{{ getNoteParType(mat?._id, 'DS1') }}</td>
+            <td>{{ getNoteParType(mat?._id, 'DS2') }}</td>
+            <td>{{ getNoteParType(mat?._id, 'Examen') }}</td>
+            <td><strong>{{ getMoyenne(mat?._id) }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="getMatieres().length === 0" class="no-data">
+      Aucune note disponible
+    </div>
+  </div>
+</div>
